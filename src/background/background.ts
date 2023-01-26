@@ -28,6 +28,7 @@ import { MessageSender } from "../models/Browser/Runtime";
 import TokenSigningAction from "./actions/TokenSigning";
 import { TokenSigningMessage } from "../models/TokenSigning/TokenSigningMessage";
 import authenticate from "./actions/authenticate";
+import authenticateWithEmrtd from "./actions/authenticate-with-emrtd";
 import getSigningCertificate from "./actions/getSigningCertificate";
 import sign from "./actions/sign";
 import status from "./actions/status";
@@ -36,6 +37,16 @@ async function onAction(message: ExtensionRequest, sender: MessageSender): Promi
   switch (message.action) {
     case Action.AUTHENTICATE:
       return await authenticate(
+        message.challengeNonce,
+
+        sender,
+        message.libraryVersion,
+        message.options?.userInteractionTimeout || libraryConfig.DEFAULT_USER_INTERACTION_TIMEOUT,
+        message.options?.lang
+      );
+
+    case Action.AUTHENTICATE_WITH_EMRTD:
+      return await authenticateWithEmrtd(
         message.challengeNonce,
 
         sender,

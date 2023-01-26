@@ -80,6 +80,12 @@ window.addEventListener("message", async (event) => {
           break;
         }
 
+        case Action.AUTHENTICATE_WITH_EMRTD: {
+          window.postMessage({ action: Action.AUTHENTICATE_WITH_EMRTD_ACK }, event.origin);
+          response = await send(event.data);
+          break;
+        }
+
         case Action.SIGN: {
           window.postMessage({ action: Action.SIGN_ACK }, event.origin);
           response = await send(event.data);
