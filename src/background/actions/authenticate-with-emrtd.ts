@@ -72,6 +72,9 @@ export default async function authenticateWithEmrtd(
 
     const isResponseValid = (
       response?.unverifiedCertificate &&
+      response?.unverifiedMrz &&
+      response?.unverifiedPhoto &&
+      response?.unverifiedDocumentSecurityObject &&
       response?.algorithm             &&
       response?.signature             &&
       response?.format                &&
