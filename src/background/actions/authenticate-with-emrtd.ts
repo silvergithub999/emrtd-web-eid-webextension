@@ -71,7 +71,7 @@ export default async function authenticateWithEmrtd(
     config.DEBUG && console.log("Authenticate with EMRTD: authentication token received");
 
     const isResponseValid = (
-      response?.unverifiedCertificate &&
+      response?.unverifiedPublicKeyInfo &&
       response?.unverifiedMrz &&
       response?.unverifiedPhoto &&
       response?.unverifiedDocumentSecurityObject &&
